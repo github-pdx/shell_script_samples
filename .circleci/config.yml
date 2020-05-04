@@ -1,0 +1,14 @@
+version: 2.1
+
+orbs:
+  shellcheck: circleci/shellcheck@1.3.16
+
+workflows:
+  shellcheck:
+    jobs:
+      - shellcheck/check:
+        path: './bash_scripts'
+        pattern: 'diskinfo_show.sh'
+      filters:
+        branches:
+          only: master
