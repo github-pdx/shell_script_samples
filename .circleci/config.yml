@@ -6,9 +6,4 @@ orbs:
 workflows:
   shellcheck:
     jobs:
-      - shellcheck/check:
-        path: './bash_scripts'
-        pattern: 'diskinfo_show.sh'
-      filters:
-        branches:
-          only: master
+      - shellcheck/check
