@@ -1,12 +1,7 @@
 #!/usr/bin/env bash
-AUTHOR="written by: github.pdx"
-ABSOLUTE_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/$(basename "${BASH_SOURCE[0]}")"
-echo Running: $ABSOLUTE_PATH
-USER=sysadmin
-GROUP=t330-admins
-CURRENT_DIR=$(pwd)
+AUTHOR="github.pdx"
 TODAY="$(date +'%m-%d-%Y')"
-printf "script:'$BASH_SOURCE' $AUTHOR\n"
+printf "script:'%s'\n%s\n" "$BASH_SOURCE" "$AUTHOR"
 
 git config user.name github.pdx
 git config user.email github.pdx@runbox.com
@@ -17,7 +12,7 @@ git config --global core.autocrlf true
 git config --list
 sudo git remote -v
 
-printf "enter commit comment for $TODAY:"
+printf "enter commit comment for %s:" "$TODAY"
 read input_comment
 
 printf "pushing to remote\n"
@@ -26,4 +21,4 @@ sudo git commit -m "${input_comment}"
 sudo git push origin master
 git status
 
-echo Script: $BASH_SOURCE Complete...
+printf "script: '%s' complete\n" "$BASH_SOURCE"

@@ -1,3 +1,6 @@
+# custom folders: 
+/bash_scripts/~script_output
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
