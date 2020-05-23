@@ -28,7 +28,7 @@ PWD_SUBDIRS="$(ls -d "$DIR_PATH"/*/)"
 
 for SHARE in $PWD_SUBDIRS
 do
-    cd "$SHARE"
+    cd "$SHARE" || return
     printf "\nupdating: '%s'\n" "$SHARE"
     sudo chgrp -R "$GROUP" "$SHARE"
     sudo chown -R "$USER":"$GROUP" "$SHARE"

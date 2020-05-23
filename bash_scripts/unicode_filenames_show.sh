@@ -19,13 +19,13 @@ do
     if [ ! -f "$DIR_PATH" ]
     then
         i=$((i+1))
-        printf "share_$i: $DIR_PATH\n" | tee -a "$FOLDERNAME/$FILENAME"
-        NON_ASCII_PATH="$(LC_ALL=C find $DIR_PATH -maxdepth 1 -name '*[! -~]*')"
+        printf "share_%d: %s\n" "$i" "$DIR_PATH" | tee -a "$FOLDERNAME/$FILENAME"
+        NON_ASCII_PATH="$(LC_ALL=C find "$DIR_PATH" -maxdepth 1 -name '*[! -~]*')"
         STR_LEN=${#NON_ASCII_PATH}
         if [ "$STR_LEN" -gt 4 ]
         then
-            UNICODE_FILENAME="$(basename -- "$NON_ASCII_PATH")"
-            printf "$NON_ASCII_PATH\n" | tee -a "$FOLDERNAME/$FILENAME"
+            #UNICODE_FILENAME="$(basename -- "$NON_ASCII_PATH")"
+            printf "%s\n" "$NON_ASCII_PATH" | tee -a "$FOLDERNAME/$FILENAME"
             #detox -r -v "$BASE_SHARE"/"$FOLDER" 
         fi
     fi

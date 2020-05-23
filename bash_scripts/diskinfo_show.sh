@@ -12,7 +12,7 @@ OS_VERSION_IPs="$(sh ./get_ip_addr_version.sh)"
 printf "%s\n" "$OS_VERSION_IPs"
 
 HOSTNAME="$(hostname)"
-CONSOLE="$USER"@"$HOSTNAME:"
+CONSOLE="$USER@$HOSTNAME:"
 
 UDISKSCTL_CMD="udisksctl status"
 UDISKSCTL="$($UDISKSCTL_CMD)"
