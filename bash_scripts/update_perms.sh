@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
 AUTHOR="github.pdx"
-ABSOLUTE_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/$(basename "${BASH_SOURCE[0]}")"
-DIR_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-CURR_PWD=$(pwd)
-TODAY="$(date +'%m-%d-%Y')"
-FILENAME="${BASH_SOURCE:2:-3}.txt"
+DIR_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
+printf "%s %s\n" "$AUTHOR" "${BASH_SOURCE[0]}"
 
 USER=sysadmin
 GROUP=t330-admins
@@ -12,7 +9,7 @@ FILE_PERM_LEVEL=0660
 DIR_PERM_LEVEL=0770
 SCRIPT_PERM_LEVEL=0770
 
-printf "script: '%s'
+printf "
   files:   %s
   dirs:    %s
   scripts: %s
@@ -25,15 +22,14 @@ printf "script: '%s'
     5 = r-x
     6 = rw-
     7 = rwx
-" "$BASH_SOURCE" "$FILE_PERM_LEVEL" "$DIR_PERM_LEVEL" "$SCRIPT_PERM_LEVEL"
-
-PWD_SUBDIRS="$(ls -d $CURR_PWD/*/)"
-SUBDIR_PATHLIST="${d:-$CURR_PWD}"
+" "$FILE_PERM_LEVEL" "$DIR_PERM_LEVEL" "$SCRIPT_PERM_LEVEL"
+# ls -d $(pwd)/*/
+PWD_SUBDIRS="$(ls -d "$DIR_PATH"/*/)"
 
 for SHARE in $PWD_SUBDIRS
 do
     cd "$SHARE"
-    printf "updating perms:\n'%s'\n" "$SHARE"
+    printf "\nupdating: '%s'\n" "$SHARE"
     sudo chgrp -R "$GROUP" "$SHARE"
     sudo chown -R "$USER":"$GROUP" "$SHARE"
     #sudo find $INPUT_DIR -type f -name "*.sh" -exec dos2unix {} \;
@@ -44,4 +40,4 @@ do
     ls -al
 done
 
-printf "script: '%s' complete\n" "$BASH_SOURCE"
+printf "%s complete...\n" "${BASH_SOURCE[0]}"

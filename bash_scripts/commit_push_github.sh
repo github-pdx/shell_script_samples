@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 AUTHOR="github.pdx"
 TODAY="$(date +'%m-%d-%Y')"
-printf "script:'%s'\n%s\n" "$BASH_SOURCE" "$AUTHOR"
+printf "%s %s\n" "$AUTHOR" "${BASH_SOURCE[0]}"
 
 git config user.name github.pdx
 git config user.email github.pdx@runbox.com
@@ -21,4 +21,4 @@ sudo git commit -m "${input_comment}"
 sudo git push origin master
 git status
 
-printf "script: '%s' complete\n" "$BASH_SOURCE"
+printf "%s complete...\n" "${BASH_SOURCE[0]}"

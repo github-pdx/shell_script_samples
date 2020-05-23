@@ -1,5 +1,4 @@
 #!/bin/bash
-AUTHOR="github.pdx"
 if [ -f /etc/lsb-release ]; then
     OS_VERSION="$(lsb_release -sd)"
 elif [ -f /etc/centos-release ]; then
