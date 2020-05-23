@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 AUTHOR="github.pdx"
-DIR_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
+CURR_PWD="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
+PARENT_DIR="$(dirname "$CURR_PWD")"
 printf "%s %s\n" "$AUTHOR" "${BASH_SOURCE[0]}"
 
 USER=sysadmin
@@ -23,10 +24,15 @@ printf "
     6 = rw-
     7 = rwx
 " "$FILE_PERM_LEVEL" "$DIR_PERM_LEVEL" "$SCRIPT_PERM_LEVEL"
-# ls -d $(pwd)/*/
-PWD_SUBDIRS="$(ls -d "$DIR_PATH"/*/)"
 
-for SHARE in $PWD_SUBDIRS
+# ls -d $(pwd)/*/
+PWD_DIRS_ARR=("$(find "$CURR_PWD" -type d -exec readlink -f {} \;)")
+#PWD_DIRS_ARR=("$(ls -d "$CURR_PWD"/*/)")
+# split array on newlines
+readarray -t SPLIT_ARR <<< "$PWD_DIRS_ARR"
+#SPLIT_ARR=(${PWD_DIRS_ARR//$'\n'/ })
+
+for SHARE in "${SPLIT_ARR[@]}"
 do
     cd "$SHARE" || return
     printf "\nupdating: '%s'\n" "$SHARE"

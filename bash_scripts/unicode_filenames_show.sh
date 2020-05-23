@@ -1,20 +1,26 @@
 #!/bin/bash
 AUTHOR="github.pdx"
+CURR_PWD="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
 TODAY="$(date +'%m-%d-%Y')"
 FILENAME="${BASH_SOURCE:2:-3}_$TODAY.txt"
-CURR_PWD=$(pwd)
 FOLDERNAME="$CURR_PWD/~script_output"
 mkdir -p "$FOLDERNAME"
 printf "%s %s\n" "$AUTHOR" "$FILENAME" | tee "$FOLDERNAME/$FILENAME"
 
-printf "finding non-ASCII chars in filenames\n" | tee -a "$FOLDERNAME/$FILENAME"
+printf "finding non-ASCII chars in filenames:\n%s\n" "$CURR_PWD" | tee -a "$FOLDERNAME/$FILENAME"
 
 START=$(date +%s.%N)
-i=0
-PWD_DIRS_ARR=("$(ls -d "$CURR_PWD"/*/)")
+i=0 
+
+PWD_DIRS_ARR=("$(find "$CURR_PWD" -type d -exec readlink -f {} \;)")
+#PWD_DIRS_ARR=("$(ls -d "$CURR_PWD"/*/)")
+
+readarray -t SPLIT_ARR <<< "$PWD_DIRS_ARR"
+#SPLIT_ARR=(${PWD_DIRS_ARR//$'\n'/ })
+printf "found %d directories\n" "${#SPLIT_ARR[@]}"
 
 # list subdirs in pwd loop through if not files. 
-for DIR_PATH in $PWD_DIRS_ARR
+for DIR_PATH in "${SPLIT_ARR[@]}"
 do
     if [ ! -f "$DIR_PATH" ]
     then

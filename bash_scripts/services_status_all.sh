@@ -19,7 +19,7 @@ do
 done 
 
 sudo /var/ossec/bin/ossec-control status | tee -a "$FOLDERNAME/$FILENAME"
-sudo journalctl -xe > "$FOLDERNAME/journalctl_xe_$MONTH_YEAR.txt"
+journalctl -xe > "$FOLDERNAME/journalctl_xe_$MONTH_YEAR.txt"
 sudo chown -R "$USER:$GROUP" "$FOLDERNAME"
 
 printf "%s complete...\n" "${BASH_SOURCE[0]}"
