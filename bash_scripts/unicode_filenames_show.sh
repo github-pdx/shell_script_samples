@@ -15,7 +15,7 @@ i=0
 PWD_DIRS_ARR=("$(find "$CURR_PWD" -type d -exec readlink -f {} \;)")
 #PWD_DIRS_ARR=("$(ls -d "$CURR_PWD"/*/)")
 
-readarray -t SPLIT_ARR <<< "$PWD_DIRS_ARR"
+readarray -t SPLIT_ARR <<< "${PWD_DIRS_ARR[@]}"
 #SPLIT_ARR=(${PWD_DIRS_ARR//$'\n'/ })
 printf "found %d directories\n" "${#SPLIT_ARR[@]}"
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 AUTHOR="github.pdx"
 CURR_PWD="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
-PARENT_DIR="$(dirname "$CURR_PWD")"
+#PARENT_DIR="$(dirname "$CURR_PWD")"
 printf "%s %s\n" "$AUTHOR" "${BASH_SOURCE[0]}"
 
 USER=sysadmin
@@ -29,7 +29,7 @@ printf "
 PWD_DIRS_ARR=("$(find "$CURR_PWD" -type d -exec readlink -f {} \;)")
 #PWD_DIRS_ARR=("$(ls -d "$CURR_PWD"/*/)")
 # split array on newlines
-readarray -t SPLIT_ARR <<< "$PWD_DIRS_ARR"
+readarray -t SPLIT_ARR <<< "${PWD_DIRS_ARR[@]}"
 #SPLIT_ARR=(${PWD_DIRS_ARR//$'\n'/ })
 
 for SHARE in "${SPLIT_ARR[@]}"
