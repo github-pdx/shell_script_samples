@@ -1,5 +1,18 @@
-# custom folders: 
-/bash_scripts/~script_output
+# custom
+desktop.ini
+.DS_Store
+.idea/
+.vscode/
+venv/
+win_scripts/
+*/~script_output/
+*_github.sh
+*.bak
+*.flt
+*.lock
+*.log
+*.ps1xml
+
 
 # Windows image file caches
 Thumbs.db

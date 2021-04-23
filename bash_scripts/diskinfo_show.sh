@@ -1,5 +1,5 @@
 #!/bin/bash
-AUTHOR="github.pdx"
+AUTHOR="averille-dev"
 MONTH_YEAR="$(date +'%m-%Y')"
 USER=sysadmin
 GROUP=t330-admins

@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
-AUTHOR="github.pdx"
+AUTHOR="averille-dev"
 CURR_PWD="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
-#PARENT_DIR="$(dirname "$CURR_PWD")"
 printf "%s %s\n" "$AUTHOR" "${BASH_SOURCE[0]}"
 
 USER=sysadmin

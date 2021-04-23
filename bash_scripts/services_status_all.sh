@@ -1,5 +1,5 @@
 #!/bin/bash
-AUTHOR="github.pdx"
+AUTHOR="averille-dev"
 MONTH_YEAR="$(date +'%m-%Y')"
 FILENAME="${BASH_SOURCE:2:-3}_$MONTH_YEAR.txt"
 CURR_PWD=$(pwd)

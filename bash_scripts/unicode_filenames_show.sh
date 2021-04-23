@@ -1,5 +1,5 @@
 #!/bin/bash
-AUTHOR="github.pdx"
+AUTHOR="averille-dev"
 CURR_PWD="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
 TODAY="$(date +'%m-%d-%Y')"
 FILENAME="${BASH_SOURCE:2:-3}_$TODAY.txt"
@@ -19,7 +19,7 @@ readarray -t SPLIT_ARR <<< "${PWD_DIRS_ARR[@]}"
 #SPLIT_ARR=(${PWD_DIRS_ARR//$'\n'/ })
 printf "found %d directories\n" "${#SPLIT_ARR[@]}"
 
-# list subdirs in pwd loop through if not files. 
+# list subdirs in pwd loop if not files
 for DIR_PATH in "${SPLIT_ARR[@]}"
 do
     if [ ! -f "$DIR_PATH" ]

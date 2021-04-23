@@ -1,7 +1,6 @@
 @echo off
 cd /d %~dp0
 TITLE %~dpnx0
-echo Written by: github.pdx
 
 @SETLOCAL
 @SET drv=%~d0
